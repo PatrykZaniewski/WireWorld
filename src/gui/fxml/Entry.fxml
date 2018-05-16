@@ -8,7 +8,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.EntryController">
    <children>
-      <Button fx:id="quitButton" layoutX="516.0" layoutY="361.0" mnemonicParsing="false" onAction="#onButtonAction" prefHeight="25.0" prefWidth="66.0" text="Wyjdź" />
+      <Button fx:id="quitButton" layoutX="520.0" layoutY="361.0" mnemonicParsing="false" onAction="#quitButtonAction" prefHeight="25.0" prefWidth="66.0" text="Wyjdź" />
       <ComboBox fx:id="templateCB" layoutX="14.0" layoutY="175.0" onAction="#onThemeChosen" prefWidth="150.0" />
       <Label layoutX="14.0" layoutY="14.0" text="WireWorld">
          <font>
@@ -20,5 +20,6 @@
             <Font name="Footlight MT Light" size="24.0" />
          </font>
       </Label>
+      <Button fx:id="nextButton" layoutX="441.0" layoutY="361.0" mnemonicParsing="false" onAction="#nexButtonAction" prefHeight="25.0" prefWidth="66.0" text="Dalej" />
    </children>
 </Pane>
