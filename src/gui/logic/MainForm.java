@@ -22,10 +22,8 @@ public class MainForm extends Application {
         loader.setLocation(this.getClass().getResource("/gui/fxml/MainForm.fxml"));
         Pane stack = loader.load();
 
-        Theme theme = new Theme(0);
-        Theme.setColorID(0);
-        theme.returnTheme();
-        stack.setStyle("-fx-background-color: " + Theme.colorName);
+        if(Theme.getColorName() == null)Theme.setColorID(0);
+        stack.setStyle("-fx-background-color: " + Theme.getColorName());
 
         Scene scene = new Scene(stack);
         primaryStage.setResizable(false);

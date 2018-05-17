@@ -18,18 +18,18 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="156.0" layoutY="141.0" prefHeight="25.0" prefWidth="52.0" />
-      <TextField layoutX="156.0" layoutY="96.0" prefHeight="25.0" prefWidth="52.0" />
+      <TextField fx:id="heightTF" layoutX="156.0" layoutY="141.0" prefHeight="25.0" prefWidth="52.0" />
+      <TextField fx:id="widthTF" layoutX="156.0" layoutY="96.0" prefHeight="25.0" prefWidth="52.0" />
       <Label layoutX="358.0" layoutY="68.0" prefHeight="27.0" prefWidth="72.0" text="Granice:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <CheckBox fx:id="wrapBorderButton" layoutX="360.0" layoutY="113.0" mnemonicParsing="false" onAction="#wrapButtonAction" text="Zawijane" />
-      <CheckBox fx:id="normalBorderButton" layoutX="360.0" layoutY="145.0" mnemonicParsing="false" onAction="#normalButtonAction" text="Normalne" />
-      <Button layoutX="537.0" layoutY="361.0" mnemonicParsing="false" text="Wyjdz" />
-      <Button layoutX="52.0" layoutY="249.0" mnemonicParsing="false" text="Stwórz siatkę" />
-      <Button layoutX="156.0" layoutY="249.0" mnemonicParsing="false" text="Wybierz szablon" />
-      <Button layoutX="468.0" layoutY="361.0" mnemonicParsing="false" text="Powrót" />
+      <CheckBox fx:id="wrapBorderCheckB" layoutX="360.0" layoutY="113.0" mnemonicParsing="false" onAction="#wrapCheckBAction" text="Zawijane" />
+      <CheckBox fx:id="normalBordeCheckB" layoutX="360.0" layoutY="145.0" mnemonicParsing="false" onAction="#normalCheckBAction" text="Normalne" />
+      <Button fx:id="quitButton" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#qutButtonAction" prefHeight="25.0" prefWidth="52.0" text="Wyjdz" />
+      <Button fx:id="makePlaygroundButton" layoutX="52.0" layoutY="249.0" mnemonicParsing="false" onAction="#onMakeAction" text="Stwórz siatkę" />
+      <Button fx:id="selectPlaygroundButton" layoutX="156.0" layoutY="249.0" mnemonicParsing="false" onAction="#onSelectAction" text="Wybierz szablon" />
+      <Button fx:id="backButton" layoutX="468.0" layoutY="361.0" mnemonicParsing="false" onAction="#backButtonAction" text="Powrót" />
    </children>
 </Pane>

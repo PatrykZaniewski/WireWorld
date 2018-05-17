@@ -10,47 +10,39 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainFormGUI {
 
-
-    @FXML
-    public ComboBox<String> templateCB;
-    public TextArea TitleTA;
+    public ComboBox<String> themeCB;
     public Button nextButton;
-    @FXML
-    private Button quitButton;
-    private Theme theme = new Theme(0);
 
 
     @FXML
     void initialize(){
-        templateCB.getItems().addAll("Różowy", "Czarny", "Biały", "Niebieski", "Szary");
-        templateCB.getSelectionModel().select(0);
+
+        themeCB.getItems().addAll("Różowy", "Czarny", "Biały", "Niebieski", "Szary");
+        themeCB.getSelectionModel().select(Theme.getColorID());
     }
 
     public void quitButtonAction(ActionEvent actionEvent) {
         Platform.exit();
     }
 
+    @FXML
     public void onThemeChosen(ActionEvent actionEvent){
-        int templateID = templateCB.getSelectionModel().getSelectedIndex();
-        Theme.setColorID(templateID);
-        theme.returnTheme();
+        int themeID = themeCB.getSelectionModel().getSelectedIndex();
+        Theme.setColorID(themeID);
         Parent thisScene = ((Node) actionEvent.getSource()).getParent();
-        thisScene.setStyle("-fx-background-color: " + Theme.colorName);
+        thisScene.setStyle("-fx-background-color: " + Theme.getColorName());
     }
 
     public void nexButtonAction(ActionEvent actionEvent) throws IOException {
-        Parent SecondParent = FXMLLoader.load(getClass().getResource("/gui/fxml/SelectionOfBoard.fxml"));
-
+        Parent nextSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/SelectionOfBoard.fxml"));
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        SecondParent.setStyle("-fx-background-color: " + Theme.colorName);
-        window.setScene(new Scene(SecondParent));
+        nextSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
+        window.setScene(new Scene(nextSceneParent));
 
     }
 
