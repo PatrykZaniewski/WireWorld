@@ -19,10 +19,6 @@ public class Theme {
     private static int colorID;
     private static String colorName;
 
-    public Theme(int colorID) {
-        Theme.colorID = colorID;
-    }
-
 
     private static void returnTheme()
     {
