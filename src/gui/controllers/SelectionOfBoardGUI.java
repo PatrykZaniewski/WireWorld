@@ -97,9 +97,12 @@ public class SelectionOfBoardGUI {
             BoardSize.setHeight(Integer.parseInt(heightTF.getText()));
             BoardSize.setWidth(Integer.parseInt(widthTF.getText()));
             Parent DesignerSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/BoardDesigner.fxml"));
-            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             DesignerSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
-            window.setScene(new Scene(DesignerSceneParent));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(DesignerSceneParent, 800, 600));
+            stage.setResizable(false);
+            stage.show();
+            ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
         }
     }
 
