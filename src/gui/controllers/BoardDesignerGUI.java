@@ -2,6 +2,7 @@ package gui.controllers;
 
 import gui.logic.BoardSize;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 
@@ -10,14 +11,15 @@ public class BoardDesignerGUI {
 
     public GridPane playgroundGP;
     public ScrollPane playgroundSP;
+    public CheckBox andCB;
+    public CheckBox orCB;
+    private int height = BoardSize.getHeight();
+    private int width = BoardSize.getWidth();
 
     @FXML
     void initialize()
     {
-        int height = BoardSize.getHeight();
-        int width = BoardSize.getWidth();
         int [][] Array = new int [height][width];
-
 
         for (int i = 0 ; i < width ; i++) {
             ColumnConstraints colConstraints = new ColumnConstraints();
@@ -67,8 +69,18 @@ public class BoardDesignerGUI {
                 pane.setStyle("-fx-background-color: black");
                 Array[rowIndex][colIndex] = 0;
             }
+            if(andCB.isSelected())
+            {
+                pane.setStyle("-fx-background-color: white");
+                Pane change = (Pane) playgroundGP.getChildren().get(colIndex * height + rowIndex);
+                change.setStyle("-fx-background-color: green");
+
+
+            }
 
         });
         playgroundGP.add(pane, colIndex, rowIndex);
     }
+
+
 }
