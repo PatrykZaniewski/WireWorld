@@ -9,8 +9,8 @@ public class BoardSize {
         return height;
     }
 
-    public static void setHeight(int heigh) {
-        BoardSize.height = heigh;
+    public static void setHeight(int height) {
+        BoardSize.height = height;
     }
 
     public static int getWidth() {
