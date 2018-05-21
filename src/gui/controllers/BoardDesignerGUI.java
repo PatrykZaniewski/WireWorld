@@ -19,6 +19,7 @@ public class BoardDesignerGUI {
     @FXML
     void initialize()
     {
+
         int [][] Array = new int [height][width];
 
         for (int i = 0 ; i < width ; i++) {
@@ -45,7 +46,7 @@ public class BoardDesignerGUI {
         pane.setPrefSize(20, 20);
         pane.setMinSize(20,20);
         pane.setMaxSize(20,20);
-        pane.setStyle("-fx-background-color: black");
+        pane.setStyle("-fx-border-color: white; -fx-background-color: black");
 
 
         pane.setOnMouseClicked(e -> {
@@ -56,17 +57,17 @@ public class BoardDesignerGUI {
             }
             else if(Array[rowIndex][colIndex] == 1)
             {
-                pane.setStyle("-fx-background-color: blue");
+                pane.setStyle("-fx-background-color: red");
                 Array[rowIndex][colIndex] = 2;
             }
             else if(Array[rowIndex][colIndex] == 2)
             {
-                pane.setStyle("-fx-background-color: red");
+                pane.setStyle("-fx-background-color: blue");
                 Array[rowIndex][colIndex] = 3;
             }
             else if(Array[rowIndex][colIndex] == 3)
             {
-                pane.setStyle("-fx-background-color: black");
+                pane.setStyle("-fx-background-color: black; -fx-border-color: white");
                 Array[rowIndex][colIndex] = 0;
             }
             if(andCB.isSelected())
@@ -74,10 +75,7 @@ public class BoardDesignerGUI {
                 pane.setStyle("-fx-background-color: white");
                 Pane change = (Pane) playgroundGP.getChildren().get(colIndex * height + rowIndex);
                 change.setStyle("-fx-background-color: green");
-
-
             }
-
         });
         playgroundGP.add(pane, colIndex, rowIndex);
     }
