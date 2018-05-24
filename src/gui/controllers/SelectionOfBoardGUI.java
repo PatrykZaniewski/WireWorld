@@ -29,7 +29,7 @@ public class SelectionOfBoardGUI {
     @FXML
     void initialize()
     {
-        heightTF.textProperty().addListener((observable, oldValue, newValue) -> {
+        /*heightTF.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 heightTF.setText(newValue.replaceAll("[^\\d]", ""));
 
@@ -60,7 +60,7 @@ public class SelectionOfBoardGUI {
                     widthTF.setText("100");
                 }
             }
-        });
+        });*/
     }
 
     public void backButtonAction(ActionEvent actionEvent) throws IOException {
