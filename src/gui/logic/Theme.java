@@ -22,11 +22,11 @@ public class Theme {
 
     private static void returnTheme()
     {
-        if(colorID == 0) colorName = "pink";
+        if(colorID == 0) colorName = "gray";
         else if (colorID == 1) colorName = "black";
         else if (colorID == 2) colorName = "white";
         else if (colorID == 3) colorName = "blue";
-        else if (colorID == 4) colorName = "gray";
+        else if (colorID == 4) colorName = "pink";
         else colorName = null;
     }
 }

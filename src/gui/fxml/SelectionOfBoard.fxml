@@ -26,7 +26,7 @@
          </font>
       </Label>
       <CheckBox fx:id="wrapBorderCheckB" layoutX="360.0" layoutY="113.0" mnemonicParsing="false" onAction="#wrapCheckBAction" text="Zawijane" />
-      <CheckBox fx:id="normalBordeCheckB" layoutX="360.0" layoutY="145.0" mnemonicParsing="false" onAction="#normalCheckBAction" text="Normalne" />
+      <CheckBox fx:id="normalBorderCheckB" layoutX="360.0" layoutY="145.0" mnemonicParsing="false" onAction="#normalCheckBAction" text="Normalne" />
       <Button fx:id="quitButton" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#qutButtonAction" prefHeight="25.0" prefWidth="52.0" text="Wyjdz" />
       <Button fx:id="makePlaygroundButton" layoutX="43.0" layoutY="200.0" mnemonicParsing="false" onAction="#onMakeAction" text="Stwórz siatkę" />
       <Button fx:id="selectPlaygroundButton" layoutX="156.0" layoutY="200.0" mnemonicParsing="false" onAction="#onSelectAction" text="Wybierz szablon" />

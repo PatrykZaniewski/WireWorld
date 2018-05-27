@@ -21,7 +21,7 @@ import java.io.IOException;
 public class SelectionOfBoardGUI {
 
     public CheckBox wrapBorderCheckB;
-    public CheckBox normalBordeCheckB;
+    public CheckBox normalBorderCheckB;
     public TextField heightTF;
     public TextField widthTF;
 
@@ -76,12 +76,12 @@ public class SelectionOfBoardGUI {
     }
 
     public void wrapCheckBAction(ActionEvent actionEvent) {
-        if(wrapBorderCheckB.isSelected())normalBordeCheckB.setDisable(true);
-        else normalBordeCheckB.setDisable(false);
+        if(wrapBorderCheckB.isSelected())normalBorderCheckB.setDisable(true);
+        else normalBorderCheckB.setDisable(false);
     }
 
     public void normalCheckBAction(ActionEvent actionEvent) {
-        if(normalBordeCheckB.isSelected())wrapBorderCheckB.setDisable(true);
+        if(normalBorderCheckB.isSelected())wrapBorderCheckB.setDisable(true);
         else wrapBorderCheckB.setDisable(false);
     }
 
@@ -96,6 +96,8 @@ public class SelectionOfBoardGUI {
         else {
             BoardSize.setHeight(Integer.parseInt(heightTF.getText()));
             BoardSize.setWidth(Integer.parseInt(widthTF.getText()));
+            if(normalBorderCheckB.isSelected())BoardSize.setBorder(true);
+            else BoardSize.setBorder(false);
             Parent DesignerSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/BoardDesigner.fxml"));
             DesignerSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
             Stage stage = new Stage();
