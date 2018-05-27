@@ -41,6 +41,7 @@ public class SimulationGui {
 
     @FXML
     void initialize(){
+        pauseButton.setDisable(true);
         playgroundTP.setPrefSize(20 * BoardSize.getWidth(), 20 * BoardSize.getHeight());
         for (int i = 0; i < BoardSize.getHeight(); i++) {
             for (int j = 0; j < BoardSize.getWidth(); j++) {
@@ -122,6 +123,7 @@ public class SimulationGui {
     }
 
     public void onStartAction(ActionEvent actionEvent){
+        pauseButton.setDisable(false);
         startButton.setDisable(true);
         start(Simulation.getLista());
         isPaused = false;
@@ -131,6 +133,12 @@ public class SimulationGui {
     public void onStopButton(ActionEvent actionEvent) {
         isStop = true;
         startButton.setDisable(false);
+        if(pauseButton.getText().equals("Wznow"))
+        {
+            pauseButton.setText("Pauza");
+            isPaused = false;
+        }
+        pauseButton.setDisable(true);
         firstGen();
     }
 
