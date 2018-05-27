@@ -6,7 +6,7 @@ public class Simulation {
     private int [] [] basicArray;
     private static int amount;
     private static ArrayList<int [][]> lista = new ArrayList<>();
-    private int [] [] tempArray;
+    public static int [] [] firstGen = new int [BoardSize.getHeight()+2][BoardSize.getWidth()+2];
 
     public static int getAmount() {
         return amount;
@@ -19,15 +19,17 @@ public class Simulation {
     public Simulation(int [][] basicArray, int amount) {
         this.basicArray = basicArray;
         Simulation.amount = amount;
-        int [] [] firstGen = new int [basicArray.length][basicArray[0].length];
+        firstGen = new int [BoardSize.getHeight()+2][BoardSize.getWidth()+2];
         for(int i = 0; i<=BoardSize.getHeight()+1; i++)
             System.arraycopy(basicArray[i], 0, firstGen[i], 0, BoardSize.getWidth() + 1 + 1);
+        lista.clear();
         lista.add(firstGen);
+        firstGen[0][0] = 5;
     }
 
     public void startSim() {
         for (int k = 1; k<=amount; k++) {
-            tempArray = new int [basicArray.length][basicArray[0].length];
+            int[][] tempArray = new int[basicArray.length][basicArray[0].length];
             for (int i = 1; i <= BoardSize.getHeight(); i++) {
                 for (int j = 1; j <= BoardSize.getWidth(); j++) {
                     int count = 0;

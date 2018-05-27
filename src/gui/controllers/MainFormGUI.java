@@ -22,7 +22,7 @@ public class MainFormGUI {
     @FXML
     void initialize(){
 
-        themeCB.getItems().addAll("Różowy", "Czarny", "Biały", "Niebieski", "Szary");
+        themeCB.getItems().addAll("Szary", "Czarny", "Biały", "Niebieski", "Różowy");
         themeCB.getSelectionModel().select(Theme.getColorID());
     }
 

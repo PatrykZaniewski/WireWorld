@@ -1,9 +1,6 @@
 package gui.controllers;
 
-import gui.logic.BoardSize;
-import gui.logic.DiodeGateFactory;
-import gui.logic.Simulation;
-import gui.logic.Theme;
+import gui.logic.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +35,7 @@ public class BoardDesignerGUI {
     private int height = BoardSize.getHeight();
     private int width = BoardSize.getWidth();
     private boolean borderType = BoardSize.getBorder();
-    int [][] Array;
+    private int [][] Array;
 
     @FXML
     void initialize()
@@ -104,6 +101,18 @@ public class BoardDesignerGUI {
                     }
                 });
                 playgroundTP.getChildren().add(r);
+            }
+        }
+        if(Simulation.firstGen[0][0] == 5)
+        {
+            generationsTF.setText(String.valueOf(Simulation.getAmount()));
+            ChangeColor paneColor = new ChangeColor(playgroundTP);
+            for (int j = 1; j <= BoardSize.getHeight(); j++) {
+                for (int k = 1; k <= BoardSize.getWidth(); k++) {
+                    if (Simulation.firstGen[j][k] == 1) paneColor.makeYellow(j-1, k-1);
+                    if (Simulation.firstGen[j][k] == 2) paneColor.makeRed(j-1, k-1);
+                    if (Simulation.firstGen[j][k] == 3) paneColor.makeBlue(j-1, k-1);
+                }
             }
         }
         generationsTF.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -179,35 +188,56 @@ public class BoardDesignerGUI {
     }
 
     public void onBackAction(ActionEvent actionEvent) throws IOException {
-        Parent nextSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/SelectionOfBoard.fxml"));
-        Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        nextSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
-        window.setScene(new Scene(nextSceneParent));
+        Simulation.firstGen[0][0] = 0;
+        playgroundTP.getChildren().removeAll();
+        Parent DesignerSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/SelectionOfBoard.fxml"));
+        DesignerSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
+        Stage stage = new Stage();
+        stage.setScene(new Scene(DesignerSceneParent, 600, 400));
+        stage.setResizable(false);
+        stage.show();
+        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
     }
 
     public void onGenerateAction(ActionEvent actionEvent) throws IOException {
-        Rectangle r;
-        for(int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                r = (Rectangle) playgroundTP.getChildren().get( (i) * BoardSize.getWidth() + (j));
-                if(r.getFill() == Color.BLACK)Array[i+1][j+1] = 0;
-                else if(r.getFill() == Color.YELLOW)Array[i+1][j+1] = 1;
-                else if(r.getFill() == Color.RED)Array[i+1][j+1] = 2;
-                else Array[i+1][j+1] = 3;
-                }
+        if(generationsTF.getText().equals("")) {
+            Alert fieldNotFilled = new Alert(Alert.AlertType.WARNING);
+            fieldNotFilled.setTitle("Ostrzeżenie");
+            fieldNotFilled.setHeaderText("");
+            fieldNotFilled.setContentText("Nie podano liczby generacji.");
+            fieldNotFilled.showAndWait();
         }
-        int amount = Integer.parseInt(generationsTF.getText());
-        /*for(int i = 0; i <= BoardSize.getHeight()+1; i++) {
-            for (int j = 0; j <= BoardSize.getWidth()+1; j++) {
-                System.out.print(Array[i][j]);
+        else {
+            Rectangle r;
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    r = (Rectangle) playgroundTP.getChildren().get((i) * BoardSize.getWidth() + (j));
+                    if (r.getFill() == Color.BLACK) Array[i + 1][j + 1] = 0;
+                    else if (r.getFill() == Color.YELLOW) Array[i + 1][j + 1] = 1;
+                    else if (r.getFill() == Color.RED) Array[i + 1][j + 1] = 2;
+                    else Array[i + 1][j + 1] = 3;
+                }
             }
-            System.out.println("");
-        }*/
-        Simulation simulation = new Simulation(Array, amount);
-        simulation.startSim();
-        Parent nextSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/Simulation.fxml"));
-        Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
-        nextSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
-        window.setScene(new Scene(nextSceneParent));
+            int amount = Integer.parseInt(generationsTF.getText());
+            Simulation simulation = new Simulation(Array, amount);
+            simulation.startSim();
+            Parent DesignerSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/Simulation.fxml"));
+            DesignerSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
+            Stage stage = new Stage();
+            stage.setScene(new Scene(DesignerSceneParent, 650, 600));
+            stage.setResizable(false);
+            stage.show();
+            ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+        }
+    }
+
+    public void onClearButton(ActionEvent actionEvent) {
+        Rectangle r;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                r = (Rectangle) playgroundTP.getChildren().get((i) * BoardSize.getWidth() + (j));
+                r.setFill(Color.BLACK);
+            }
+        }
     }
 }
