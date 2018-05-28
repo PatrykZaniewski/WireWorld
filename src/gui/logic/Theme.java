@@ -19,7 +19,6 @@ public class Theme {
     private static int colorID;
     private static String colorName;
 
-
     private static void returnTheme()
     {
         if(colorID == 0) colorName = "gray";

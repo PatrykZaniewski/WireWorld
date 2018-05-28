@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -35,6 +36,7 @@ public class SimulationGUI {
     public Button pauseButton;
     public Label generationLabel;
     public Button startButton;
+    public Slider speedSlider;
     private boolean isPaused = true;
     private boolean isStop = true;
     private Service<Void> backgroundThread;
@@ -91,7 +93,7 @@ public class SimulationGUI {
                                         if (Array[j][k] == 3) paneColor.makeBlue(j - 1, k - 1);
                                     }
                                 }
-                                Thread.sleep(500);
+                                Thread.sleep((long)(1000/speedSlider.getValue()));
                             }
                         }
                         return null;
