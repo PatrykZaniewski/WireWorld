@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SimulationGui {
+public class SimulationGUI {
 
     public ScrollPane playgroundSP;
     public TilePane playgroundTP;
