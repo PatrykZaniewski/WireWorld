@@ -61,6 +61,10 @@ public class SelectionOfBoardGUI {
                 }
             }
         });
+
+        normalBorderCheckB.setSelected(true);
+        heightTF.setText("50");
+        widthTF.setText("50");
     }
 
     public void backButtonAction(ActionEvent actionEvent) throws IOException {
@@ -76,13 +80,13 @@ public class SelectionOfBoardGUI {
     }
 
     public void wrapCheckBAction(ActionEvent actionEvent) {
-        if(wrapBorderCheckB.isSelected())normalBorderCheckB.setDisable(true);
-        else normalBorderCheckB.setDisable(false);
+        if(wrapBorderCheckB.isSelected())normalBorderCheckB.setSelected(false);
+        else normalBorderCheckB.setSelected(true);
     }
 
     public void normalCheckBAction(ActionEvent actionEvent) {
-        if(normalBorderCheckB.isSelected())wrapBorderCheckB.setDisable(true);
-        else wrapBorderCheckB.setDisable(false);
+        if(normalBorderCheckB.isSelected())wrapBorderCheckB.setSelected(false);
+        else wrapBorderCheckB.setSelected(true);
     }
 
     public void onMakeAction(ActionEvent actionEvent) throws IOException {

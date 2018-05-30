@@ -80,12 +80,10 @@ public class SimulationGUI {
                 return new Task<Void>() {
                     @Override
                     protected Void call() throws Exception {
-                        int actualGen = 0;
                         ChangeColor paneColor = new ChangeColor(playgroundTP);
                         for (int[][] Array : lista) {
                             while(isPaused)Thread.sleep(1);
                             gen++;
-                            generationLabel.setText(String.valueOf(gen));
                             if (isStop) break;
                             else {
                                 for (int j = 1; j <= BoardSize.getHeight(); j++) {
