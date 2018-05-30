@@ -15,8 +15,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Optional;
 
 public class BoardDesignerGUI {
 
@@ -106,7 +112,7 @@ public class BoardDesignerGUI {
         if(Simulation.firstGen[0][0] == 5)
         {
             generationsTF.setText(String.valueOf(Simulation.getAmount()));
-            ChangeColor paneColor = new ChangeColor(playgroundTP);
+            ChangeColor paneColor = new ChangeColor(playgroundTP, borderType);
             for (int j = 1; j <= BoardSize.getHeight(); j++) {
                 for (int k = 1; k <= BoardSize.getWidth(); k++) {
                     if (Simulation.firstGen[j][k] == 1) paneColor.makeYellow(j-1, k-1);
@@ -137,50 +143,39 @@ public class BoardDesignerGUI {
 
     public void onAndAction(ActionEvent actionEvent) {
         if(andCB.isSelected())disableAll(andCB);
-        else enableAll();
+        else positionCoB.setDisable(true);
     }
 
     public void onOrAction(ActionEvent actionEvent) {
         if(orCB.isSelected())disableAll(orCB);
-        else enableAll();
+        else positionCoB.setDisable(true);
     }
 
     public void onDiodeAction(ActionEvent actionEvent) {
         if(diodeCB.isSelected())disableAll(diodeCB);
-        else enableAll();
+        else positionCoB.setDisable(true);
     }
 
     public void onBigGenAction(ActionEvent actionEvent) {
         if(bigGeneratorCB.isSelected())disableAll(bigGeneratorCB);
-        else enableAll();
+        else positionCoB.setDisable(true);
     }
 
     public void onSmallGenAction(ActionEvent actionEvent) {
         if(smallGeneratorCB.isSelected())disableAll(smallGeneratorCB);
-        else enableAll();
+        else positionCoB.setDisable(true);
     }
 
     private void disableAll(CheckBox notDisabled)
     {
-        andCB.setDisable(true);
-        orCB.setDisable(true);
-        diodeCB.setDisable(true);
-        bigGeneratorCB.setDisable(true);
-        smallGeneratorCB.setDisable(true);
+        smallGeneratorCB.setSelected(false);
+        andCB.setSelected(false);
+        orCB.setSelected(false);
+        diodeCB.setSelected(false);
+        bigGeneratorCB.setSelected(false);
 
-        notDisabled.setDisable(false);
+        notDisabled.setSelected(true);
         positionCoB.setDisable(false);
-    }
-
-    private void enableAll()
-    {
-        andCB.setDisable(false);
-        orCB.setDisable(false);
-        diodeCB.setDisable(false);
-        bigGeneratorCB.setDisable(false);
-        smallGeneratorCB.setDisable(false);
-
-        positionCoB.setDisable(true);
     }
 
     public void onQuitButton(ActionEvent actionEvent) {
@@ -188,15 +183,29 @@ public class BoardDesignerGUI {
     }
 
     public void onBackAction(ActionEvent actionEvent) throws IOException {
-        Simulation.firstGen[0][0] = 0;
-        playgroundTP.getChildren().removeAll();
-        Parent DesignerSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/SelectionOfBoard.fxml"));
-        DesignerSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
-        Stage stage = new Stage();
-        stage.setScene(new Scene(DesignerSceneParent, 600, 400));
-        stage.setResizable(false);
-        stage.show();
-        ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Ostrzeżenie");
+        alert.setHeaderText("");
+        alert.setContentText("Powrót do okna z rozmiarem spowoduje utratę aktualnej planszy.");
+
+        ButtonType buttonTypeGo = new ButtonType("Cofnij");
+        ButtonType buttonTypeCancel = new ButtonType("Anuluj", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeGo, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeGo){
+            Simulation.firstGen[0][0] = 0;
+            playgroundTP.getChildren().removeAll();
+            Parent DesignerSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/SelectionOfBoard.fxml"));
+            DesignerSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
+            Stage stage = new Stage();
+            stage.setScene(new Scene(DesignerSceneParent, 600, 400));
+            stage.setResizable(false);
+            stage.show();
+            ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+        }
     }
 
     public void onGenerateAction(ActionEvent actionEvent) throws IOException {
@@ -219,7 +228,7 @@ public class BoardDesignerGUI {
                 }
             }
             int amount = Integer.parseInt(generationsTF.getText());
-            Simulation simulation = new Simulation(Array, amount);
+            Simulation simulation = new Simulation(Array, amount, borderType);
             simulation.startSim();
             Parent DesignerSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/Simulation.fxml"));
             DesignerSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
@@ -239,5 +248,34 @@ public class BoardDesignerGUI {
                 r.setFill(Color.BLACK);
             }
         }
+    }
+
+    public void onSaveAction(ActionEvent actionEvent) throws FileNotFoundException {
+            FileChooser chooser = new FileChooser();
+            chooser.setTitle("Choose location To Save Report");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+            chooser.getExtensionFilters().add(extFilter);
+            File file = chooser.showSaveDialog(((Node) actionEvent.getSource()).getScene().getWindow());
+            PrintWriter printFile = new PrintWriter(file);
+            Rectangle r;
+                for(int i = 0; i<height; i++) {
+                    for (int j = 0; j < width; j++) {
+                        r = (Rectangle) playgroundTP.getChildren().get((i) * BoardSize.getWidth() + (j));
+                        if (r.getFill() == Color.BLACK) {
+                            printFile.print("0");
+                        }
+                        else if (r.getFill() == Color.YELLOW) {
+                            printFile.print("1");
+                        }
+                        else if (r.getFill() == Color.RED) {
+                            printFile.print("2");
+                        }
+                        else {
+                            printFile.print("3");
+                        }
+                    }
+                    printFile.println("");
+                }
+                printFile.close();
     }
 }

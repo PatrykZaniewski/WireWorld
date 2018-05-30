@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -26,7 +27,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SimulationGui {
+public class SimulationGUI {
 
     public ScrollPane playgroundSP;
     public TilePane playgroundTP;
@@ -35,12 +36,15 @@ public class SimulationGui {
     public Button pauseButton;
     public Label generationLabel;
     public Button startButton;
+    public Slider speedSlider;
     private boolean isPaused = true;
     private boolean isStop = true;
     private Service<Void> backgroundThread;
+    int gen = 0;
 
     @FXML
     void initialize(){
+        pauseButton.setDisable(true);
         playgroundTP.setPrefSize(20 * BoardSize.getWidth(), 20 * BoardSize.getHeight());
         for (int i = 0; i < BoardSize.getHeight(); i++) {
             for (int j = 0; j < BoardSize.getWidth(); j++) {
@@ -76,11 +80,10 @@ public class SimulationGui {
                 return new Task<Void>() {
                     @Override
                     protected Void call() throws Exception {
-                        int actualGen = 0;
                         ChangeColor paneColor = new ChangeColor(playgroundTP);
                         for (int[][] Array : lista) {
                             while(isPaused)Thread.sleep(1);
-                            actualGen++;
+                            gen++;
                             if (isStop) break;
                             else {
                                 for (int j = 1; j <= BoardSize.getHeight(); j++) {
@@ -90,7 +93,7 @@ public class SimulationGui {
                                         if (Array[j][k] == 3) paneColor.makeBlue(j - 1, k - 1);
                                     }
                                 }
-                                Thread.sleep(500);
+                                Thread.sleep((long)(1000/speedSlider.getValue()));
                             }
                         }
                         return null;
@@ -122,6 +125,7 @@ public class SimulationGui {
     }
 
     public void onStartAction(ActionEvent actionEvent){
+        pauseButton.setDisable(false);
         startButton.setDisable(true);
         start(Simulation.getLista());
         isPaused = false;
@@ -131,6 +135,12 @@ public class SimulationGui {
     public void onStopButton(ActionEvent actionEvent) {
         isStop = true;
         startButton.setDisable(false);
+        if(pauseButton.getText().equals("Wznow"))
+        {
+            pauseButton.setText("Pauza");
+            isPaused = false;
+        }
+        pauseButton.setDisable(true);
         firstGen();
     }
 
