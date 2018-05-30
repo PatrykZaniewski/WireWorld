@@ -40,6 +40,7 @@ public class SimulationGUI {
     private boolean isPaused = true;
     private boolean isStop = true;
     private Service<Void> backgroundThread;
+    int gen = 0;
 
     @FXML
     void initialize(){
@@ -83,7 +84,8 @@ public class SimulationGUI {
                         ChangeColor paneColor = new ChangeColor(playgroundTP);
                         for (int[][] Array : lista) {
                             while(isPaused)Thread.sleep(1);
-                            actualGen++;
+                            gen++;
+                            generationLabel.setText(String.valueOf(gen));
                             if (isStop) break;
                             else {
                                 for (int j = 1; j <= BoardSize.getHeight(); j++) {

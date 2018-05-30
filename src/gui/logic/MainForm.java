@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 public class MainForm extends Application {
 
 
-
     public static void main (String [] args)
     {
         launch(args);
