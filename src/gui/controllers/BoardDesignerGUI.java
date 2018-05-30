@@ -138,7 +138,7 @@ public class BoardDesignerGUI {
                 else generationsTF.setText("");
                 number = 0;
             }
-            if(number>1000 && generationsTF.getText().length() > 3)generationsTF.setText(oldValue);
+            if(number > 1000 && generationsTF.getText().length() > 3)generationsTF.setText(oldValue);
             if(number == 0 && !generationsTF.getText().equals(""))generationsTF.setText(oldValue);
         });
         positionCoB.getItems().addAll("Z prawej", "Z lewej", "Od góry", "Od dołu");
