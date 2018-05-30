@@ -15,8 +15,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class BoardDesignerGUI {
 
@@ -32,6 +37,7 @@ public class BoardDesignerGUI {
     public Button quitButton;
     public Button backBT;
     public Button generateBT;
+    public TextField fileTF;
     private int height = BoardSize.getHeight();
     private int width = BoardSize.getWidth();
     private boolean borderType = BoardSize.getBorder();
@@ -239,5 +245,34 @@ public class BoardDesignerGUI {
                 r.setFill(Color.BLACK);
             }
         }
+    }
+
+    public void onSaveAction(ActionEvent actionEvent) throws FileNotFoundException {
+            FileChooser chooser = new FileChooser();
+            chooser.setTitle("Choose location To Save Report");
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+            chooser.getExtensionFilters().add(extFilter);
+            File file = chooser.showSaveDialog(((Node) actionEvent.getSource()).getScene().getWindow());
+            PrintWriter printFile = new PrintWriter(file);
+            Rectangle r;
+                for(int i = 0; i<height; i++) {
+                    for (int j = 0; j < width; j++) {
+                        r = (Rectangle) playgroundTP.getChildren().get((i) * BoardSize.getWidth() + (j));
+                        if (r.getFill() == Color.BLACK) {
+                            printFile.print("0");
+                        }
+                        else if (r.getFill() == Color.YELLOW) {
+                            printFile.print("1");
+                        }
+                        else if (r.getFill() == Color.RED) {
+                            printFile.print("2");
+                        }
+                        else {
+                            printFile.print("3");
+                        }
+                    }
+                    printFile.println("");
+                }
+                printFile.close();
     }
 }

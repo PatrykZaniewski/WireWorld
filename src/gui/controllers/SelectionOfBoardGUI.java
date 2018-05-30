@@ -101,7 +101,7 @@ public class SelectionOfBoardGUI {
             Parent DesignerSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/BoardDesigner.fxml"));
             DesignerSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
             Stage stage = new Stage();
-            stage.setScene(new Scene(DesignerSceneParent, 800, 600));
+            stage.setScene(new Scene(DesignerSceneParent, 800, 650));
             stage.setResizable(false);
             stage.show();
             ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
