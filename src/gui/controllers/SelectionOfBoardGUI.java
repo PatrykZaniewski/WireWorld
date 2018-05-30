@@ -32,34 +32,42 @@ public class SelectionOfBoardGUI {
         heightTF.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 heightTF.setText(newValue.replaceAll("[^\\d]", ""));
-
             }
-            if (heightTF.getText().length() > 2) {
-                if(Integer.parseInt(heightTF.getText())!=100) {
-                    String s = heightTF.getText().substring(0, 2);
-                    heightTF.setText(s);
-                }
-                if(Integer.parseInt(oldValue) == 100)
+                int number;
+                try
                 {
-                    heightTF.setText("100");
+                    number = Integer.parseInt(heightTF.getText());
                 }
-            }
+                catch (NumberFormatException e)
+                {
+                    if(!heightTF.getText().equals(""))
+                    heightTF.setText(oldValue);
+                    else heightTF.setText("");
+                    number = 0;
+                }
+                if(number>1000 && heightTF.getText().length() > 3)heightTF.setText(oldValue);
+                if(number == 0 && !heightTF.getText().equals(""))heightTF.setText(oldValue);
+
         });
 
         widthTF.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
                 widthTF.setText(newValue.replaceAll("[^\\d]", ""));
             }
-            if (widthTF.getText().length() > 2) {
-                if(Integer.parseInt(widthTF.getText())!=100) {
-                    String s = widthTF.getText().substring(0, 2);
-                    widthTF.setText(s);
-                }
-                if(Integer.parseInt(oldValue) == 100)
-                {
-                    widthTF.setText("100");
-                }
+            int number;
+            try
+            {
+                number = Integer.parseInt(widthTF.getText());
             }
+            catch (NumberFormatException e)
+            {
+                if(!widthTF.getText().equals(""))
+                    widthTF.setText(oldValue);
+                else widthTF.setText("");
+                number = 0;
+            }
+            if(number>1000 && widthTF.getText().length() > 3)widthTF.setText(oldValue);
+            if(number == 0 && !widthTF.getText().equals(""))widthTF.setText(oldValue);
         });
 
         normalBorderCheckB.setSelected(true);

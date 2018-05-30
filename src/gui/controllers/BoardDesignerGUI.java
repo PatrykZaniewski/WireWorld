@@ -126,16 +126,20 @@ public class BoardDesignerGUI {
                 generationsTF.setText(newValue.replaceAll("[^\\d]", ""));
 
             }
-            if (generationsTF.getText().length() > 2) {
-                if(Integer.parseInt(oldValue) == 100)
-                {
-                    generationsTF.setText("100");
-                }
-                if(Integer.parseInt(generationsTF.getText())!=100) {
-                    String s = generationsTF.getText().substring(0, 2);
-                    generationsTF.setText(s);
-                }
+            int number;
+            try
+            {
+                number = Integer.parseInt(generationsTF.getText());
             }
+            catch (NumberFormatException e)
+            {
+                if(!generationsTF.getText().equals(""))
+                    generationsTF.setText(oldValue);
+                else generationsTF.setText("");
+                number = 0;
+            }
+            if(number>1000 && generationsTF.getText().length() > 3)generationsTF.setText(oldValue);
+            if(number == 0 && !generationsTF.getText().equals(""))generationsTF.setText(oldValue);
         });
         positionCoB.getItems().addAll("Z prawej", "Z lewej", "Od góry", "Od dołu");
         positionCoB.getSelectionModel().select(0);
