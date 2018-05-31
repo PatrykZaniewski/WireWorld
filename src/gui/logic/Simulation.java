@@ -20,7 +20,7 @@ public class Simulation {
 
     public Simulation(int [][] basicArray, int amount, boolean borderType) {
         this.borderType = borderType;
-        this.borderType = BoardSize.getBorder();
+       // this.borderType = BoardSize.getBorder();
         this.basicArray = basicArray;
         Simulation.amount = amount;
         firstGen = new int [BoardSize.getHeight()+2][BoardSize.getWidth()+2];
