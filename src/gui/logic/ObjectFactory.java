@@ -59,8 +59,6 @@ public class ObjectFactory {
         }
     }
 
-
-
     public void bigGenDisplay (int orientation)
     {
         ChangeColor paneColor = new ChangeColor(playgroundTP, borderType);

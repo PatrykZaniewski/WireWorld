@@ -256,11 +256,12 @@ public class BoardDesignerGUI {
 
     public void onSaveAction(ActionEvent actionEvent) throws FileNotFoundException {
             FileChooser chooser = new FileChooser();
-            chooser.setTitle("Choose location To Save Report");
+            chooser.setTitle("Wybierz miejsce zapisania");
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
             chooser.getExtensionFilters().add(extFilter);
             File file = chooser.showSaveDialog(((Node) actionEvent.getSource()).getScene().getWindow());
             PrintWriter printFile = new PrintWriter(file);
+            printFile.println(height + " " + width);
             Rectangle r;
                 for(int i = 0; i<height; i++) {
                     for (int j = 0; j < width; j++) {
