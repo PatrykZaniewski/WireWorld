@@ -111,7 +111,7 @@ public class TemplateSelectionGUI {
             int amount = Integer.parseInt(generationsTF.getText());
             BoardSize.setHeight(Array.length-2);
             BoardSize.setWidth(Array[0].length-2);
-            Simulation simulation = new Simulation(Array, amount, true);
+            Simulation simulation = new Simulation(Array, amount, BoardSize.getBorder());
             simulation.startSim();
             Parent DesignerSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/Simulation.fxml"));
             DesignerSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());

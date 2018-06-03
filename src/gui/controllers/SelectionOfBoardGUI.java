@@ -121,6 +121,7 @@ public class SelectionOfBoardGUI {
     }
 
     public void onSelectAction(ActionEvent actionEvent) throws IOException {
+        if(normalBorderCheckB.isSelected())BoardSize.setBorder(true);
         Parent TemplateSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/TemplateSelection.fxml"));
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         TemplateSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
