@@ -28,7 +28,7 @@ public class SimulationTest {
         l2[1][1] = 1;
         lista.add(l1);
         lista.add(l2);
-        s = new Simulation(l1,amount);
+        s = new Simulation(l1,amount, true);
 
     }
 

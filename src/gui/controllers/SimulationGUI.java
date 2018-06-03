@@ -34,13 +34,11 @@ public class SimulationGUI {
     public Button quitButton;
     public Button backButton;
     public Button pauseButton;
-    public Label generationLabel;
     public Button startButton;
     public Slider speedSlider;
     private boolean isPaused = true;
     private boolean isStop = true;
     private Service<Void> backgroundThread;
-    int gen = 0;
 
     @FXML
     void initialize(){
@@ -63,7 +61,6 @@ public class SimulationGUI {
     private void firstGen ()
     {
         ChangeColor paneColor = new ChangeColor(playgroundTP);
-        generationLabel.setText("0");
         for (int j = 1; j <= BoardSize.getHeight(); j++) {
             for (int k = 1; k <= BoardSize.getWidth(); k++) {
                 if (Simulation.firstGen[j][k] == 1) paneColor.makeYellow(j-1, k-1);
@@ -83,7 +80,6 @@ public class SimulationGUI {
                         ChangeColor paneColor = new ChangeColor(playgroundTP);
                         for (int[][] Array : lista) {
                             while(isPaused)Thread.sleep(1);
-                            gen++;
                             if (isStop) break;
                             else {
                                 for (int j = 1; j <= BoardSize.getHeight(); j++) {

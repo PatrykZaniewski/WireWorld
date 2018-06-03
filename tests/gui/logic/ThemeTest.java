@@ -28,7 +28,7 @@ public class ThemeTest {
         assertTrue(Theme.getColorName() == "white");
         Theme.setColorID(3);
         color = Theme.getColorID();
-        assertTrue(Theme.getColorName() == "blue");
+        assertTrue(Theme.getColorName() == "blueviolet");
         Theme.setColorID(4);
         color = Theme.getColorID();
         assertTrue(Theme.getColorName() == "pink");

@@ -51,7 +51,9 @@ public class TemplateSelectionGUI {
                     if (number > 1000 && generationsTF.getText().length() > 3) generationsTF.setText(oldValue);
                     if (number == 0 && !generationsTF.getText().equals("")) generationsTF.setText(oldValue);
                 });
-        templateLV.getItems().addAll("Szablon 1", "Szablon 2", "Szablon 3", "Szablon 4", "Szablon 5", "Szablon 6", "Szablon 7", "Szablon 8", "Szablon 9", "Szablon 10");
+        templateLV.getItems().addAll("Szablon 1", "Szablon 2", "Szablon 3", "Szablon 4", "Szablon 5", "Szablon 6", "Szablon 7", "Szablon 8", "Szablon 9", "Szablon 10",
+                "Szablon 11", "Szablon 12", "Szablon 13", "Szablon 14", "Szablon 15", "Szablon 16", "Szablon 17", "Szablon 18", "Szablon 19", "Szablon 20", "Szablon 21",
+                "Szablon 22", "Szablon 23", "Szablon 24", "Szablon 25");
         templateLV.getSelectionModel().select(0);
 
         temp = new TemplateSelection();
@@ -111,7 +113,7 @@ public class TemplateSelectionGUI {
             int amount = Integer.parseInt(generationsTF.getText());
             BoardSize.setHeight(Array.length-2);
             BoardSize.setWidth(Array[0].length-2);
-            Simulation simulation = new Simulation(Array, amount, true);
+            Simulation simulation = new Simulation(Array, amount, BoardSize.getBorder());
             simulation.startSim();
             Parent DesignerSceneParent = FXMLLoader.load(getClass().getResource("/gui/fxml/Simulation.fxml"));
             DesignerSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());

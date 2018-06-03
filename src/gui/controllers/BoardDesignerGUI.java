@@ -63,28 +63,28 @@ public class BoardDesignerGUI {
 
                     if(andCB.isSelected())
                     {
-                        DiodeGateFactory andGate = new DiodeGateFactory(row, column, borderType, playgroundTP);
-                        andGate.andGateDisplay();
+                        ObjectFactory andGate = new ObjectFactory(row, column, borderType, playgroundTP);
+                        andGate.andGateDisplay(positionCoB.getSelectionModel().getSelectedIndex());
                     }
                     else if (orCB.isSelected())
                     {
-                        DiodeGateFactory orGate = new DiodeGateFactory(row, column, borderType, playgroundTP);
-                        orGate.orGateDisplay();
+                        ObjectFactory orGate = new ObjectFactory(row, column, borderType, playgroundTP);
+                        orGate.orGateDisplay(positionCoB.getSelectionModel().getSelectedIndex());
                     }
                     else if (diodeCB.isSelected())
                     {
-                        DiodeGateFactory diode = new DiodeGateFactory(row, column, borderType, playgroundTP);
-                        diode.diodeDisplay();
+                        ObjectFactory diode = new ObjectFactory(row, column, borderType, playgroundTP);
+                        diode.diodeDisplay(positionCoB.getSelectionModel().getSelectedIndex());
                     }
                     else if (bigGeneratorCB.isSelected())
                     {
-                        DiodeGateFactory bigGen = new DiodeGateFactory(row, column, borderType, playgroundTP);
-                        bigGen.bigGenDisplay();
+                        ObjectFactory bigGen = new ObjectFactory(row, column, borderType, playgroundTP);
+                        bigGen.bigGenDisplay(positionCoB.getSelectionModel().getSelectedIndex());
                     }
                     else if (smallGeneratorCB.isSelected())
                     {
-                        DiodeGateFactory smallGen = new DiodeGateFactory(row, column, borderType, playgroundTP);
-                        smallGen.smallGenDisplay();
+                        ObjectFactory smallGen = new ObjectFactory(row, column, borderType, playgroundTP);
+                        smallGen.smallGenDisplay(positionCoB.getSelectionModel().getSelectedIndex());
                     }
                     else
                     {
@@ -139,7 +139,6 @@ public class BoardDesignerGUI {
                 number = 0;
             }
             if(number > 1000 && generationsTF.getText().length() > 3)generationsTF.setText(oldValue);
-            if(number == 0 && !generationsTF.getText().equals(""))generationsTF.setText(oldValue);
         });
         positionCoB.getItems().addAll("Z prawej", "Z lewej", "Od góry", "Od dołu");
         positionCoB.getSelectionModel().select(0);
@@ -256,11 +255,12 @@ public class BoardDesignerGUI {
 
     public void onSaveAction(ActionEvent actionEvent) throws FileNotFoundException {
             FileChooser chooser = new FileChooser();
-            chooser.setTitle("Choose location To Save Report");
+            chooser.setTitle("Wybierz miejsce zapisania");
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
             chooser.getExtensionFilters().add(extFilter);
             File file = chooser.showSaveDialog(((Node) actionEvent.getSource()).getScene().getWindow());
             PrintWriter printFile = new PrintWriter(file);
+            printFile.println(height + " " + width);
             Rectangle r;
                 for(int i = 0; i<height; i++) {
                     for (int j = 0; j < width; j++) {
