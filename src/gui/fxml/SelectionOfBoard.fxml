@@ -4,6 +4,8 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -20,7 +22,7 @@
       </Label>
       <TextField fx:id="heightTF" layoutX="181.0" layoutY="141.0" prefHeight="25.0" prefWidth="52.0" />
       <TextField fx:id="widthTF" layoutX="181.0" layoutY="109.0" prefHeight="25.0" prefWidth="52.0" />
-      <Label layoutX="358.0" layoutY="68.0" prefHeight="27.0" prefWidth="72.0" text="Granice:">
+      <Label layoutX="356.0" layoutY="68.0" prefHeight="27.0" prefWidth="72.0" text="Granice:">
          <font>
             <Font size="18.0" />
          </font>
@@ -28,14 +30,19 @@
       <CheckBox fx:id="wrapBorderCheckB" layoutX="360.0" layoutY="113.0" mnemonicParsing="false" onAction="#wrapCheckBAction" text="Zawijane" />
       <CheckBox fx:id="normalBorderCheckB" layoutX="360.0" layoutY="145.0" mnemonicParsing="false" onAction="#normalCheckBAction" text="Normalne" />
       <Button fx:id="quitButton" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#qutButtonAction" prefHeight="25.0" prefWidth="52.0" text="Wyjdz" />
-      <Button fx:id="makePlaygroundButton" layoutX="43.0" layoutY="200.0" mnemonicParsing="false" onAction="#onMakeAction" text="Stwórz siatkę" />
-      <Button fx:id="selectPlaygroundButton" layoutX="156.0" layoutY="200.0" mnemonicParsing="false" onAction="#onSelectAction" text="Wybierz szablon" />
+      <Button fx:id="makePlaygroundButton" layoutX="43.0" layoutY="200.0" mnemonicParsing="false" onAction="#onMakeAction" prefHeight="25.0" prefWidth="244.0" text="Stwórz siatkę" />
+      <Button fx:id="selectPlaygroundButton" layoutX="43.0" layoutY="289.0" mnemonicParsing="false" onAction="#onSelectAction" prefHeight="25.0" prefWidth="244.0" text="Wybierz szablon" />
       <Button fx:id="backButton" layoutX="468.0" layoutY="361.0" mnemonicParsing="false" onAction="#backButtonAction" text="Powrót" />
-      <Label layoutX="13.0" layoutY="68.0" prefHeight="25.0" prefWidth="286.0" text="Podaj wymiary planszy (max. 100):">
+      <Label layoutX="29.0" layoutY="68.0" prefHeight="25.0" prefWidth="286.0" text="Podaj wymiary planszy (max. 100):">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="106.0" layoutY="268.0" mnemonicParsing="false" onAction="#onFileReadAction" text="Wczytaj z pliku" />
+      <Button layoutX="43.0" layoutY="245.0" mnemonicParsing="false" onAction="#onFileReadAction" prefHeight="25.0" prefWidth="244.0" text="Wczytaj z pliku" />
+      <ImageView fitHeight="138.0" fitWidth="201.0" layoutX="349.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../resources/SelectionOfBoardImage.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
