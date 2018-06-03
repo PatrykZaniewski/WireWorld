@@ -13,9 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.Buffer;
 
 
 public class SelectionOfBoardGUI {
@@ -126,5 +128,16 @@ public class SelectionOfBoardGUI {
         Stage window = (Stage)((Node) actionEvent.getSource()).getScene().getWindow();
         TemplateSceneParent.setStyle("-fx-background-color: " + Theme.getColorName());
         window.setScene(new Scene(TemplateSceneParent));
+    }
+
+    public void onFileReadAction(ActionEvent actionEvent) {
+        /*FileChooser chooser = new FileChooser();
+        chooser.setTitle("Wybierz plik do wczytania");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        chooser.getExtensionFilters().add(extFilter);
+        File file = chooser.showOpenDialog(((Node) actionEvent.getSource()).getScene().getWindow());
+
+
+        BufferedReader buffer = new BufferedReader(file);*/
     }
 }
