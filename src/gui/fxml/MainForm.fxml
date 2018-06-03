@@ -25,7 +25,7 @@
       <Button fx:id="nextButton" layoutX="441.0" layoutY="361.0" mnemonicParsing="false" onAction="#nexButtonAction" prefHeight="25.0" prefWidth="66.0" text="Dalej" />
       <ImageView fitHeight="208.0" fitWidth="249.0" layoutX="327.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/dawae.png" />
+            <Image url="@../../resources/mainSceneImage.png" />
          </image>
       </ImageView>
    </children>
