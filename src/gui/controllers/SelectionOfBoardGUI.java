@@ -49,7 +49,7 @@ public class SelectionOfBoardGUI {
                     else heightTF.setText("");
                     number = 0;
                 }
-                if(number>1000 && heightTF.getText().length() > 3)heightTF.setText(oldValue);
+                if(number>100 && heightTF.getText().length() > 2)heightTF.setText(oldValue);
 
         });
 
@@ -69,7 +69,7 @@ public class SelectionOfBoardGUI {
                 else widthTF.setText("");
                 number = 0;
             }
-            if(number>1000 && widthTF.getText().length() > 3)widthTF.setText(oldValue);
+            if(number>100 && widthTF.getText().length() > 2)widthTF.setText(oldValue);
         });
 
         normalBorderCheckB.setSelected(true);
