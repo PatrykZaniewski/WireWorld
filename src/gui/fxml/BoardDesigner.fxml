@@ -33,7 +33,7 @@
       <CheckBox fx:id="smallGeneratorCB" layoutX="14.0" layoutY="407.0" mnemonicParsing="false" onAction="#onSmallGenAction" text="Generator mały" />
       <ComboBox fx:id="positionCoB" disable="true" layoutX="44.0" layoutY="456.0" prefHeight="25.0" prefWidth="117.0" />
       <Label layoutX="11.0" layoutY="424.0" prefHeight="44.0" prefWidth="181.0" text="Pozycja bramki/diody/generatora:" textAlignment="CENTER" wrapText="true" />
-      <Label layoutX="7.0" layoutY="488.0" prefHeight="44.0" prefWidth="80.0" text="Ilość generacji:&#10;(max. 100)&#10;" textAlignment="CENTER" wrapText="true" />
+      <Label layoutX="7.0" layoutY="488.0" prefHeight="44.0" prefWidth="80.0" text="Ilość generacji:&#10;(max. 1000)&#10;" textAlignment="CENTER" wrapText="true" />
       <TextField fx:id="generationsTF" layoutX="94.0" layoutY="498.0" prefHeight="25.0" prefWidth="92.0" />
       <Button fx:id="quitButton" layoutX="733.0" layoutY="561.0" mnemonicParsing="false" onAction="#onQuitButton" prefHeight="25.0" prefWidth="53.0" text="Wyjdź" />
       <Button fx:id="backBT" layoutX="673.0" layoutY="561.0" mnemonicParsing="false" onAction="#onBackAction" prefHeight="25.0" prefWidth="53.0" text="Cofnij" />
